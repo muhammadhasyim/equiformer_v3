@@ -50,7 +50,7 @@ class EquivariantLayerNorm(torch.nn.Module):
         return f"{self.__class__.__name__}(lmax={self.lmax}, num_channels={self.num_channels}, eps={self.eps})"
 
 
-    @torch.cuda.amp.autocast(enabled=False)
+    @torch.amp.autocast("cuda", enabled=False)
     def forward(self, inputs):
         """
             1.   `inputs` shape: (num_nodes, (self.lmax + 1) ** 2, self.num_channels)
@@ -144,7 +144,7 @@ class EquivariantSeparableLayerNorm(torch.nn.Module):
         return f"{self.__class__.__name__}(lmax={self.lmax}, num_channels={self.num_channels}, eps={self.eps}, std_balance_degrees={self.std_balance_degrees})"
 
 
-    @torch.cuda.amp.autocast(enabled=False)
+    @torch.amp.autocast("cuda", enabled=False)
     def forward(self, inputs):
         """
             1.  `inputs` shape: (num_nodes, (self.lmax + 1) ** 2, self.num_channels)
@@ -243,7 +243,7 @@ class EquivariantMergeLayerNorm(torch.nn.Module):
         return f"{self.__class__.__name__}(lmax={self.lmax}, num_channels={self.num_channels}, eps={self.eps}, std_balance_degrees={self.std_balance_degrees}, centering={self.centering})"
 
 
-    @torch.cuda.amp.autocast(enabled=False)
+    @torch.amp.autocast("cuda", enabled=False)
     def forward(self, inputs):
         """
             1.  `inputs` shape: (num_nodes, (self.lmax + 1) ** 2, self.num_channels)
